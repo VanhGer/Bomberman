@@ -18,13 +18,11 @@ import java.util.List;
 
 public class BombermanGame extends Application {
     
-    public static final int WIDTH = 20;
-    public static final int HEIGHT = 15;
+    public static final int WIDTH = 31;
+    public static final int HEIGHT = 13;
     
-    private GraphicsContext gc;
-    private Canvas canvas;
-    private List<Entity> entities = new ArrayList<>();
-    private List<Entity> stillObjects = new ArrayList<>();
+    public static GraphicsContext gc;
+    public static Canvas canvas;
 
 
     @Override
@@ -47,40 +45,13 @@ public class BombermanGame extends Application {
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
-                render();
-                update();
+                EList.render(gc, canvas);
+                EList.update();
             }
         };
         timer.start();
-
-        createMap();
-
-        Entity bomberman = new Bomber(1, 1, Sprite.player_right.getFxImage());
-        entities.add(bomberman);
+        Map.Read();
     }
 
-    public void createMap() {
-        for (int i = 0; i < WIDTH; i++) {
-            for (int j = 0; j < HEIGHT; j++) {
-                Entity object;
-                if (j == 0 || j == HEIGHT - 1 || i == 0 || i == WIDTH - 1) {
-                    object = new Wall(i, j, Sprite.wall.getFxImage());
-                }
-                else {
-                    object = new Grass(i, j, Sprite.grass.getFxImage());
-                }
-                stillObjects.add(object);
-            }
-        }
-    }
 
-    public void update() {
-        entities.forEach(Entity::update);
-    }
-
-    public void render() {
-        gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
-    }
 }
