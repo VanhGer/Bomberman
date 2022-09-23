@@ -24,6 +24,7 @@ public class Map {
         } catch (FileNotFoundException e) {
             return;
         }
+
         int lv = scanner.nextInt();
         int row = scanner.nextInt();
         int col = scanner.nextInt();
@@ -34,11 +35,13 @@ public class Map {
             for (int i = 0; i < col; i++) {
                 char c = tmp.charAt(i);
                 switch(c) {
+
                     case '#': {
                         ent = new Wall(i, j, Sprite.wall.getFxImage());
-                        EList.stillObjects.add(ent);
+                        EList.walls.add(ent);
                         break;
                     }
+
                     case '*':
                     case 'x':
                     case 'b':
@@ -47,7 +50,7 @@ public class Map {
                         ent = new Wall(i, j, Sprite.brick.getFxImage());
                         EList.bricks.add(ent);
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.stillObjects.add(ent);
+                        EList.grasses.add(ent);
                         // xu ly th ben trong co item???
                         if (c == 'x') {
                             ent = new Item(i, j, Sprite.portal.getFxImage());
@@ -63,33 +66,37 @@ public class Map {
                         }
                         break;
                     }
+
                     case 'p': {
-                        ent = new Bomber(i, j, Sprite.player_down.getFxImage());
-                        EList.entities.add(ent);
+                        BombermanGame.bomber = new Bomber(i, j, Sprite.player_down.getFxImage());
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.stillObjects.add(ent);
+                        EList.grasses.add(ent);
                         break;
                     }
+
                     case '1': {
                         ent = new Balloon(i, j, Sprite.balloom_right1.getFxImage());
                         EList.enemies.add(ent);
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.stillObjects.add(ent);
+                        EList.grasses.add(ent);
                         break;
                     }
+
                     case '2': {
                         ent = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
                         EList.enemies.add(ent);
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.stillObjects.add(ent);
+                        EList.grasses.add(ent);
                         break;
                     }
+
                     default: {
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.stillObjects.add(ent);
+                        EList.grasses.add(ent);
                     }
                 }
             }
         }
+        level++;
     }
 }

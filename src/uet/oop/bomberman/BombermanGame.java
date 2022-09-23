@@ -2,10 +2,12 @@ package uet.oop.bomberman;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import uet.oop.bomberman.entities.Bomber;
 import uet.oop.bomberman.entities.Entity;
@@ -24,6 +26,7 @@ public class BombermanGame extends Application {
     public static GraphicsContext gc;
     public static Canvas canvas;
 
+    public static Bomber bomber;
 
     @Override
     public void start(Stage stage) {
@@ -42,6 +45,46 @@ public class BombermanGame extends Application {
         stage.setScene(scene);
         stage.show();
 
+        // Di chuyen Bomber
+        scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch (keyEvent.getCode()) {
+                    case UP: {
+                        // Move up
+                        bomber.setMoving(true);
+                        bomber.setDir(1);
+                        break;
+                    }
+
+                    case DOWN: {
+                        // Move down
+                        bomber.setMoving(true);
+                        bomber.setDir(2);
+                        break;
+                    }
+
+                    case LEFT: {
+                        //Move left
+                        bomber.setMoving(true);
+                        bomber.setDir(3);
+                        break;
+                    }
+
+                    case RIGHT: {
+                        //Move right
+                        bomber.setMoving(true);
+                        bomber.setDir(4);
+                        break;
+                    }
+                    default:
+                        break;
+                }
+            }
+        });
+
+
+
         AnimationTimer timer = new AnimationTimer() {
             @Override
             public void handle(long l) {
@@ -50,7 +93,6 @@ public class BombermanGame extends Application {
             }
         };
         timer.start();
-        Map.Read();
     }
 
 
