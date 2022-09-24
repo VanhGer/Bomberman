@@ -14,6 +14,10 @@ public abstract class Entity {
     //Tọa độ Y tính từ góc trái trên trong Canvas
     private int y;
 
+    // Real coordinates
+    private int xUnit;
+    private int yUnit;
+
     protected Image img;
 
     //Khởi tạo đối tượng, chuyển từ tọa độ đơn vị sang tọa độ trong canvas
@@ -21,6 +25,24 @@ public abstract class Entity {
         this.x = xUnit * Sprite.SCALED_SIZE;
         this.y = yUnit * Sprite.SCALED_SIZE;
         this.img = img;
+        this.xUnit = xUnit;
+        this.yUnit = yUnit;
+    }
+
+    public int getxUnit() {
+        return xUnit;
+    }
+
+    public void setxUnit(int xUnit) {
+        this.xUnit = xUnit;
+    }
+
+    public int getyUnit() {
+        return yUnit;
+    }
+
+    public void setyUnit(int yUnit) {
+        this.yUnit = yUnit;
     }
 
     public int getX() {
@@ -43,6 +65,16 @@ public abstract class Entity {
         this.img = img;
     }
 
+    public Image getImg() {
+        return img;
+    }
+
+    public void change_coordinates(int nxt_x, int nxt_y) {
+        setX(nxt_x);
+        setY(nxt_y);
+        setxUnit((nxt_x + Sprite.SCALED_SIZE / 2) / Sprite.SCALED_SIZE);
+        setyUnit((nxt_y + Sprite.SCALED_SIZE / 2)/ Sprite.SCALED_SIZE);
+    }
     public void render(GraphicsContext gc) {
         gc.drawImage(img, x, y);
     }

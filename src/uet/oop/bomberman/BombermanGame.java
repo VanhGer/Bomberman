@@ -14,6 +14,7 @@ import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.entities.Grass;
 import uet.oop.bomberman.entities.Wall;
 import uet.oop.bomberman.graphics.Sprite;
+import uet.oop.bomberman.other.Bomb;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +51,12 @@ public class BombermanGame extends Application {
             @Override
             public void handle(KeyEvent keyEvent) {
                 switch (keyEvent.getCode()) {
+                    case SPACE: {
+                        // set bomb
+                        Bomb bomb = new Bomb(bomber.getxUnit(), bomber.getyUnit(), Sprite.bomb.getFxImage());
+                        EList.bombs.add(bomb);
+                        break;
+                    }
                     case UP: {
                         // Move up
                         bomber.setMoving(true);
@@ -83,6 +90,18 @@ public class BombermanGame extends Application {
             }
         });
 
+        scene.setOnKeyReleased(new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent keyEvent) {
+                switch (keyEvent.getCode()) {
+                    case UP:
+                    case DOWN:
+                    case LEFT:
+                    case RIGHT:
+                        bomber.setMoving(false);
+                }
+            }
+        });
 
 
         AnimationTimer timer = new AnimationTimer() {

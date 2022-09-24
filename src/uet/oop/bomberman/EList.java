@@ -13,11 +13,13 @@ public class EList {
     public static List<Entity> bricks = new ArrayList<>();
     public static List<Entity> enemies = new ArrayList<>();
     public static List<Entity> items = new ArrayList<>();
+    public static List<Entity> bombs = new ArrayList<>();
 
     public static void update() {
         bricks.forEach(Entity::update);
         items.forEach(Entity::update);
         enemies.forEach(Entity::update);
+        bombs.forEach(Entity::update);
         BombermanGame.bomber.update();
     }
 
@@ -28,6 +30,7 @@ public class EList {
         bricks.forEach(g -> g.render(gc));
         enemies.forEach(g -> g.render(gc));
         items.forEach(g -> g.render(gc));
+        bombs.forEach(g -> g.render(gc));
         BombermanGame.bomber.render(gc);
 
 

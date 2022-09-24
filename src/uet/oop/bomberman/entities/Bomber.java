@@ -37,8 +37,7 @@ public class Bomber extends DynamicEntity {
                 // change Img
             }
             if (!check_colliding(nxt_x, nxt_y)) {
-                setX(nxt_x);
-                setY(nxt_y);
+                change_coordinates(nxt_x, nxt_y);
             }
         }
     }
