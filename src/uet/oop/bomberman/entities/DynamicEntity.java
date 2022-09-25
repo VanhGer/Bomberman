@@ -6,13 +6,15 @@ import uet.oop.bomberman.EList;
 
 public class DynamicEntity extends Entity{
 
-    private boolean isMoving = false;
-    private int speed = 3;
-    private int dir = 0; // 0: STAND, 1: UP, 2: DOWN, 3: LEFT, 4: RIGHT
+    protected boolean isMoving = false;
+    protected int speed = 3;
+    protected int dir = 0; // 0: STAND, 1: UP, 2: DOWN, 3: LEFT, 4: RIGHT
+    protected int animation = 0;
 
 
     public DynamicEntity(int x, int y, Image img) {
         super( x, y, img);
+        animation = 0;
     }
 
     public void setMoving(boolean moving) {
@@ -53,6 +55,8 @@ public class DynamicEntity extends Entity{
         }
         return false;
     }
+
+    public void change_img() {}
 
     @Override
     public void update() {
