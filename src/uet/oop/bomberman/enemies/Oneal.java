@@ -1,9 +1,10 @@
 package uet.oop.bomberman.enemies;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.entities.DynamicEntity;
 import uet.oop.bomberman.entities.Entity;
 
-public class Oneal extends Entity {
+public class Oneal extends DynamicEntity {
     public Oneal(int x, int y, Image img) {
         super(x, y, img);
     }

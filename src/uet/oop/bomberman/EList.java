@@ -2,34 +2,43 @@ package uet.oop.bomberman;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.Entity;
+import uet.oop.bomberman.other.Bomb;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EList {
-    public static List<Entity> entities = new ArrayList<>();
-    public static List<Entity> stillObjects = new ArrayList<>();
+    public static List<Entity> grasses = new ArrayList<>();
+    public static List<Entity> walls = new ArrayList<>();
     public static List<Entity> bricks = new ArrayList<>();
     public static List<Entity> enemies = new ArrayList<>();
     public static List<Entity> items = new ArrayList<>();
+    public static List<Bomb> bombs = new ArrayList<>();
 
     public static void update() {
-        entities.forEach(Entity::update);
+        /** update. */
         bricks.forEach(Entity::update);
         items.forEach(Entity::update);
-        entities.forEach(Entity::update);
+        enemies.forEach(Entity::update);
+        bombs.forEach(Entity::update);
+        BombermanGame.bomber.update();
+
+        /** remove. */
+       bombs.removeIf(b -> b.isDone());
+
+
     }
 
     public static void render(GraphicsContext gc, Canvas canvas) {
+        /** render. */
         gc.clearRect(0, 0, canvas.getWidth(), canvas.getHeight());
-        stillObjects.forEach(g -> g.render(gc));
-        entities.forEach(g -> g.render(gc));
-        enemies.forEach(g -> g.render(gc));
+        grasses.forEach(g -> g.render(gc));
+        walls.forEach(g -> g.render(gc));
         bricks.forEach(g -> g.render(gc));
+        enemies.forEach(g -> g.render(gc));
         items.forEach(g -> g.render(gc));
-
-
+        bombs.forEach(g -> g.render(gc));
+        BombermanGame.bomber.render(gc);
     }
 }
