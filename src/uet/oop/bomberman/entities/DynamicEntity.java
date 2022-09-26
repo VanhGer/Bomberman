@@ -4,7 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.EList;
 
-public class DynamicEntity extends Entity{
+public abstract class DynamicEntity extends Entity{
 
     protected boolean isMoving = false;
     protected int speed = 3;
@@ -56,7 +56,9 @@ public class DynamicEntity extends Entity{
         return false;
     }
 
-    public void change_img() {}
+    public abstract void change_img();
+
+    public abstract boolean isDone();
 
     @Override
     public void update() {

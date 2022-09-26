@@ -13,4 +13,14 @@ public class Oneal extends DynamicEntity {
     public void update() {
 
     }
+
+    @Override
+    public boolean isDone() {
+        return false;
+    }
+
+    @Override
+    public void change_img() {
+
+    }
 }

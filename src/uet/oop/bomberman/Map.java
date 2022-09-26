@@ -38,7 +38,7 @@ public class Map {
 
                     case '#': {
                         ent = new Wall(i, j, Sprite.wall.getFxImage());
-                        EList.walls.add(ent);
+                        EList.walls.add((Wall) ent);
                         break;
                     }
 
@@ -47,10 +47,10 @@ public class Map {
                     case 'b':
                     case 'f':
                     case 's': {
-                        ent = new Wall(i, j, Sprite.brick.getFxImage());
-                        EList.bricks.add(ent);
+                        ent = new Brick(i, j, Sprite.brick.getFxImage());
+                        EList.bricks.add((Brick) ent);
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.grasses.add(ent);
+                        EList.grasses.add((Grass) ent);
                         // xu ly th ben trong co item???
                         if (c == 'x') {
                             ent = new Item(i, j, Sprite.portal.getFxImage());
@@ -62,7 +62,7 @@ public class Map {
                             ent = new Item(i, j, Sprite.powerup_speed.getFxImage());
                         }
                         if (c != '*') {
-                            EList.items.add(ent);
+                            EList.items.add((Item) ent);
                         }
                         break;
                     }
@@ -70,7 +70,7 @@ public class Map {
                     case 'p': {
                         BombermanGame.bomber = new Bomber(i, j, Sprite.player_down.getFxImage());
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.grasses.add(ent);
+                        EList.grasses.add((Grass) ent);
                         break;
                     }
 
@@ -78,7 +78,7 @@ public class Map {
                         ent = new Balloon(i, j, Sprite.balloom_right1.getFxImage());
                         EList.enemies.add(ent);
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.grasses.add(ent);
+                        EList.grasses.add((Grass) ent);
                         break;
                     }
 
@@ -86,13 +86,13 @@ public class Map {
                         ent = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
                         EList.enemies.add(ent);
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.grasses.add(ent);
+                        EList.grasses.add((Grass) ent);
                         break;
                     }
 
                     default: {
                         ent = new Grass(i, j, Sprite.grass.getFxImage());
-                        EList.grasses.add(ent);
+                        EList.grasses.add((Grass) ent);
                     }
                 }
             }
