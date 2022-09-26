@@ -53,8 +53,10 @@ public class BombermanGame extends Application {
                 switch (keyEvent.getCode()) {
                     case SPACE: {
                         // set bomb
-                        Bomb bomb = new Bomb(bomber.getxUnit(), bomber.getyUnit(), Sprite.bomb.getFxImage());
-                        EList.bombs.add(bomb);
+                        if (EList.bombs.size() < Bomb.bombLimit) {
+                            Bomb bomb = new Bomb(bomber.getxUnit(), bomber.getyUnit(), Sprite.bomb.getFxImage());
+                            EList.bombs.add(bomb);
+                        }
                         break;
                     }
                     case UP: {

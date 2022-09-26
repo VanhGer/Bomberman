@@ -1,17 +1,11 @@
 package uet.oop.bomberman.entities;
 
-import javafx.scene.SnapshotParameters;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.EList;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Bomber extends DynamicEntity {
-
-  public static final int bomberCycle = 20;
 
   public Bomber(int x, int y, Image img) {
     super(x, y, img);
@@ -58,10 +52,10 @@ public class Bomber extends DynamicEntity {
       }
       if (!check_colliding(nxt_x, nxt_y)) {
         change_coordinates(nxt_x, nxt_y);
-        animation++;
-        if (animation == bomberCycle) animation = 0;
-        change_img();
       }
+      animation++;
+      if (animation == CommonFunc.Period) animation = 0;
+      change_img();
     }
   }
 
@@ -71,33 +65,52 @@ public class Bomber extends DynamicEntity {
     if (getDir() == 1) {
       setImg(
           Sprite.movingSprite(
-                  Sprite.player_up, Sprite.player_up_1, Sprite.player_up_2, animation, bomberCycle)
+                  Sprite.player_up,
+                  Sprite.player_up_1,
+                  Sprite.player_up_2,
+                  animation,
+                  CommonFunc.Period)
               .getFxImage());
     }
     /** down. */
     if (getDir() == 2) {
       setImg(
-              Sprite.movingSprite(
-                              Sprite.player_down, Sprite.player_down_1, Sprite.player_down_2, animation, bomberCycle)
-                      .getFxImage());
+          Sprite.movingSprite(
+                  Sprite.player_down,
+                  Sprite.player_down_1,
+                  Sprite.player_down_2,
+                  animation,
+                  CommonFunc.Period)
+              .getFxImage());
     }
 
     /** left. */
     if (getDir() == 3) {
       setImg(
-              Sprite.movingSprite(
-                              Sprite.player_left, Sprite.player_left_1, Sprite.player_left_2, animation, bomberCycle)
-                      .getFxImage());
+          Sprite.movingSprite(
+                  Sprite.player_left,
+                  Sprite.player_left_1,
+                  Sprite.player_left_2,
+                  animation,
+                  CommonFunc.Period)
+              .getFxImage());
     }
 
     /** right. */
     if (getDir() == 4) {
       setImg(
-              Sprite.movingSprite(
-                              Sprite.player_right, Sprite.player_right_1, Sprite.player_right_2, animation, bomberCycle)
-                      .getFxImage());
+          Sprite.movingSprite(
+                  Sprite.player_right,
+                  Sprite.player_right_1,
+                  Sprite.player_right_2,
+                  animation,
+                  CommonFunc.Period)
+              .getFxImage());
     }
+  }
 
-
+  @Override
+  public boolean isDone() {
+    return false;
   }
 }
