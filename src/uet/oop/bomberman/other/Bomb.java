@@ -3,7 +3,6 @@ package uet.oop.bomberman.other;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.EList;
-import uet.oop.bomberman.entities.Brick;
 import uet.oop.bomberman.entities.DynamicEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -41,7 +40,7 @@ public class Bomb extends DynamicEntity {
   @Override
   public void update() {
     if (!isExploding()) {
-      if (animation != timeExploding) {
+      if (animation < timeExploding) {
         setImg(
             Sprite.movingSprite(
                     Sprite.bomb, Sprite.bomb_1, Sprite.bomb_2, animation, CommonFunc.Period)
@@ -155,6 +154,15 @@ public class Bomb extends DynamicEntity {
     }
     for (int i = 0; i < EList.walls.size(); i++) {
       if (x == EList.walls.get(i).getxUnit() && y == EList.walls.get(i).getyUnit()) {
+        return false;
+      }
+    }
+
+    for (int i = 0; i < EList.bombs.size(); i++) {
+      if (x == EList.bombs.get(i).getxUnit() && y == EList.bombs.get(i).getyUnit()) {
+        if (!EList.bombs.get(i).isExploding()) {
+          EList.bombs.get(i).setAnimation(timeExploding);
+        }
         return false;
       }
     }

@@ -6,7 +6,7 @@ import uet.oop.bomberman.EList;
 
 public abstract class DynamicEntity extends Entity{
 
-    protected boolean isMoving = false;
+    protected boolean moving = false;
     protected int speed = 3;
     protected int dir = 0; // 0: STAND, 1: UP, 2: DOWN, 3: LEFT, 4: RIGHT
     protected int animation = 0;
@@ -18,7 +18,7 @@ public abstract class DynamicEntity extends Entity{
     }
 
     public void setMoving(boolean moving) {
-        isMoving = moving;
+        this.moving = moving;
     }
 
     public void setDir(int dir) {
@@ -37,8 +37,8 @@ public abstract class DynamicEntity extends Entity{
         return speed;
     }
 
-    public boolean getIsMoving() {
-        return isMoving;
+    public boolean isMoving() {
+        return moving;
     }
 
     public boolean check_colliding(int nxt_x, int nxt_y) {
