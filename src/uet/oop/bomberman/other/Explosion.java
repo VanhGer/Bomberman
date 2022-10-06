@@ -15,7 +15,7 @@ public class Explosion extends DynamicEntity {
     VERTICAL
   }
 
-  public static int Explosionrange = 2;
+  public static int Explosionrange = 1;
   public Dir dir;
 
   public Explosion(int x, int y, Image img, Dir dir) {

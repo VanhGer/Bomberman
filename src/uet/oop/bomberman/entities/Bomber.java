@@ -7,8 +7,25 @@ import uet.oop.bomberman.graphics.Sprite;
 
 public class Bomber extends DynamicEntity {
 
+  public boolean Dead;
+  public int deadAnimation;
   public Bomber(int x, int y, Image img) {
     super(x, y, img);
+    Dead = false;
+    deadAnimation = 0;
+  }
+
+  public boolean isDead() {
+    return Dead;
+  }
+
+  public void setDead(boolean dead) {
+    Dead = dead;
+  }
+
+  @Override
+  public boolean isDone() {
+    return isDead() && deadAnimation >= CommonFunc.Period;
   }
 
   @Override
@@ -29,7 +46,7 @@ public class Bomber extends DynamicEntity {
 
   @Override
   public void update() {
-    if (getIsMoving()) {
+    if (isMoving() && ! isDead()) {
       int nxt_x = getX();
       int nxt_y = getY();
 
@@ -55,12 +72,36 @@ public class Bomber extends DynamicEntity {
       }
       animation++;
       if (animation == CommonFunc.Period) animation = 0;
+    }
+    if (!isDead()) {
+      check_Dead();
+    } else {
+      deadAnimation++;
+    }
+    if (isDead() || isMoving()) {
       change_img();
+    }
+
+  }
+  /** check if player is dead. */
+  public void check_Dead() {
+    for (int i = 0; i < EList.explosions.size(); i++) {
+      if (CommonFunc.Collide(getX(), getY(), EList.explosions.get(i).getX(), EList.explosions.get(i).getY())) {
+        setDead(true);
+        deadAnimation = 0;
+        return;
+      }
     }
   }
 
   @Override
   public void change_img() {
+    if (isDead()) {
+      setImg(Sprite.movingSprite(Sprite.player_dead1, Sprite.player_dead2, Sprite.player_dead3, deadAnimation,
+              CommonFunc.Period).getFxImage());
+      return;
+    }
+
     /** up. */
     if (getDir() == 1) {
       setImg(
@@ -72,6 +113,7 @@ public class Bomber extends DynamicEntity {
                   CommonFunc.Period)
               .getFxImage());
     }
+
     /** down. */
     if (getDir() == 2) {
       setImg(
@@ -109,8 +151,4 @@ public class Bomber extends DynamicEntity {
     }
   }
 
-  @Override
-  public boolean isDone() {
-    return false;
-  }
 }
