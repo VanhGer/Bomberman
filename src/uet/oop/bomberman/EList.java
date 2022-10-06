@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EList {
+  public static Bomber bomberman;
   public static List<Grass> grasses = new ArrayList<>();
   public static List<Wall> walls = new ArrayList<>();
   public static List<Brick> bricks = new ArrayList<>();
@@ -17,6 +18,7 @@ public class EList {
   public static List<Item> items = new ArrayList<>();
   public static List<Bomb> bombs = new ArrayList<>();
   public static List<Explosion> explosions = new ArrayList<>();
+
 
   public static void clear() {
     grasses.clear();
@@ -26,7 +28,7 @@ public class EList {
     items.clear();
     bombs.clear();
     explosions.clear();
-    BombermanGame.bomber = null;
+    //BombermanGame.bomber = null;
   }
 
   public static void update() {
@@ -36,8 +38,8 @@ public class EList {
     enemies.forEach(Entity::update);
     bombs.forEach(Entity::update);
     explosions.forEach(Entity::update);
-    if (BombermanGame.bomber != null) {
-      BombermanGame.bomber.update();
+    if (bomberman != null) {
+      bomberman.update();
     }
 
 
@@ -46,10 +48,10 @@ public class EList {
     explosions.removeIf(e -> e.isDone());
     bricks.removeIf(b -> b.isDone());
     items.removeIf(i -> i.isUsed());
-    if (BombermanGame.bomber.isDone()) {
-      BombermanGame.bomber = null;
-      System.exit(0);
-    }
+  }
+
+  public static boolean lose() {
+    return bomberman.isDone();
   }
 
   public static void render(GraphicsContext gc, Canvas canvas) {
@@ -62,8 +64,8 @@ public class EList {
     bricks.forEach(g -> g.render(gc));
     bombs.forEach(g -> g.render(gc));
     explosions.forEach(g -> g.render(gc));
-    if (BombermanGame.bomber != null) {
-        BombermanGame.bomber.render(gc);
+    if (bomberman != null) {
+        bomberman.render(gc);
     }
   }
 }

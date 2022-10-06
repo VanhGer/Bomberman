@@ -2,6 +2,7 @@ package uet.oop.bomberman.entities;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
+import uet.oop.bomberman.EList;
 import uet.oop.bomberman.Map;
 import uet.oop.bomberman.other.Bomb;
 import uet.oop.bomberman.other.Explosion;
@@ -33,8 +34,8 @@ public class Item extends Entity {
 
   @Override
   public void update() {
-    if (getxUnit() == BombermanGame.bomber.getxUnit()
-        && getyUnit() == BombermanGame.bomber.getyUnit()) {
+    if (getxUnit() == EList.bomberman.getxUnit()
+        && getyUnit() == EList.bomberman.getyUnit()) {
       setUsed(true);
       switch (t) {
         case Bomb:
@@ -51,7 +52,7 @@ public class Item extends Entity {
 
         case Speed:
           {
-            BombermanGame.bomber.speed++;
+            EList.bomberman.speed++;
             break;
           }
 

@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class Map {
   public static int level = 1;
-  public static final int maxLevel = 3;
+  public static final int maxLevel = 2;
 
   public static void levelUp() {
     level++;
@@ -22,8 +22,7 @@ public class Map {
   public static void Read() {
     if (level == maxLevel) {
       // win -> in ra mh chien thang.
-      System.exit(0);
-      return;
+      BombermanGame.wonScence();
     }
     String tmp = "level" + level + ".txt";
     Scanner scanner = null;
@@ -78,7 +77,7 @@ public class Map {
 
           case 'p':
             {
-              BombermanGame.bomber = new Bomber(i, j, Sprite.player_down.getFxImage());
+              EList.bomberman = new Bomber(i, j, Sprite.player_down.getFxImage());
               ent = new Grass(i, j, Sprite.grass.getFxImage());
               EList.grasses.add((Grass) ent);
               break;
