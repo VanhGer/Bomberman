@@ -35,15 +35,7 @@ public class Balloon extends DynamicEntity {
             int nxt_x = getX();
             int nxt_y = getY();
 
-            if (getDir() == 1) { // UP
-                // check collide
-                nxt_y -= getSpeed();
-                // change Img
-            } else if (getDir() == 2) { // DOWN
-                // check collide
-                nxt_y += getSpeed();
-                // change Img
-            } else if (getDir() == 3) { // LEFT
+            if (getDir() == 3) { // LEFT
                 // check collide
                 nxt_x -= getSpeed();
                 // change Img
