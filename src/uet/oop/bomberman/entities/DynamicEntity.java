@@ -53,25 +53,8 @@ public abstract class DynamicEntity extends Entity{
                 return true;
             }
         }
-
-        for (Entity ent: EList.bombs) {
-            if (CommonFunc.Collide(nxt_x, nxt_y, ent.getX(), ent.getY())) {
-                return true;
-            }
-        }
         return false;
     }
-
-    public boolean check_explosing() {
-        for (int i = 0; i < EList.explosions.size(); i++) {
-            if (CommonFunc.Collide(getX(), getY(), EList.explosions.get(i).getX(), EList.explosions.get(i).getY())) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-
 
     public abstract void change_img();
 
