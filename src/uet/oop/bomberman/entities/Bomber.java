@@ -41,6 +41,7 @@ public class Bomber extends DynamicEntity {
         return true;
       }
     }
+
     return false;
   }
 
@@ -51,21 +52,13 @@ public class Bomber extends DynamicEntity {
       int nxt_y = getY();
 
       if (getDir() == 1) { // UP
-        // check collide
         nxt_y -= getSpeed();
-        // change Img
       } else if (getDir() == 2) { // DOWN
-        // check collide
         nxt_y += getSpeed();
-        // change Img
       } else if (getDir() == 3) { // LEFT
-        // check collide
         nxt_x -= getSpeed();
-        // change Img
       } else if (getDir() == 4) { // RIGHT
-        // check collide
         nxt_x += getSpeed();
-        // change Img
       }
       if (!check_colliding(nxt_x, nxt_y)) {
         change_coordinates(nxt_x, nxt_y);
@@ -85,8 +78,13 @@ public class Bomber extends DynamicEntity {
   }
   /** check if player is dead. */
   public void check_Dead() {
-    for (int i = 0; i < EList.explosions.size(); i++) {
-      if (CommonFunc.Collide(getX(), getY(), EList.explosions.get(i).getX(), EList.explosions.get(i).getY())) {
+    if (check_explosing()) {
+      setDead(true);
+      deadAnimation = 0;
+      return;
+    }
+    for (Entity ent: EList.enemies) {
+      if (CommonFunc.Collide(getX(), getY(), ent.getX(), ent.getY())) {
         setDead(true);
         deadAnimation = 0;
         return;
@@ -105,49 +103,49 @@ public class Bomber extends DynamicEntity {
     /** up. */
     if (getDir() == 1) {
       setImg(
-          Sprite.movingSprite(
-                  Sprite.player_up,
-                  Sprite.player_up_1,
-                  Sprite.player_up_2,
-                  animation,
-                  CommonFunc.Period)
-              .getFxImage());
+              Sprite.movingSprite(
+                              Sprite.player_up,
+                              Sprite.player_up_1,
+                              Sprite.player_up_2,
+                              animation,
+                              CommonFunc.Period)
+                      .getFxImage());
     }
 
     /** down. */
     if (getDir() == 2) {
       setImg(
-          Sprite.movingSprite(
-                  Sprite.player_down,
-                  Sprite.player_down_1,
-                  Sprite.player_down_2,
-                  animation,
-                  CommonFunc.Period)
-              .getFxImage());
+              Sprite.movingSprite(
+                              Sprite.player_down,
+                              Sprite.player_down_1,
+                              Sprite.player_down_2,
+                              animation,
+                              CommonFunc.Period)
+                      .getFxImage());
     }
 
     /** left. */
     if (getDir() == 3) {
       setImg(
-          Sprite.movingSprite(
-                  Sprite.player_left,
-                  Sprite.player_left_1,
-                  Sprite.player_left_2,
-                  animation,
-                  CommonFunc.Period)
-              .getFxImage());
+              Sprite.movingSprite(
+                              Sprite.player_left,
+                              Sprite.player_left_1,
+                              Sprite.player_left_2,
+                              animation,
+                              CommonFunc.Period)
+                      .getFxImage());
     }
 
     /** right. */
     if (getDir() == 4) {
       setImg(
-          Sprite.movingSprite(
-                  Sprite.player_right,
-                  Sprite.player_right_1,
-                  Sprite.player_right_2,
-                  animation,
-                  CommonFunc.Period)
-              .getFxImage());
+              Sprite.movingSprite(
+                              Sprite.player_right,
+                              Sprite.player_right_1,
+                              Sprite.player_right_2,
+                              animation,
+                              CommonFunc.Period)
+                      .getFxImage());
     }
   }
 
