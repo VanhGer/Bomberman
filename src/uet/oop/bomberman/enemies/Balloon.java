@@ -2,31 +2,14 @@ package uet.oop.bomberman.enemies;
 
 import javafx.scene.image.Image;
 import uet.oop.bomberman.CommonFunc;
-import uet.oop.bomberman.EList;
-import uet.oop.bomberman.entities.DynamicEntity;
-import uet.oop.bomberman.entities.Entity;
 import uet.oop.bomberman.graphics.Sprite;
 
-public class Balloon extends DynamicEntity {
+public class Balloon extends Enemies  {
     public Balloon(int x, int y, Image img) {
         super(x, y, img);
-        super.setDir(3);
-        super.setMoving(true);
-        super.speed = 2;
-    }
-    public boolean check_colliding(int nxt_x, int nxt_y) {
-        for (Entity ent : EList.walls) {
-            if (CommonFunc.Bomber_Collide(nxt_x, nxt_y, ent.getX(), ent.getY())) {
-                return true;
-            }
-        }
-
-        for (Entity ent : EList.bricks) {
-            if (CommonFunc.Bomber_Collide(nxt_x, nxt_y, ent.getX(), ent.getY())) {
-                return true;
-            }
-        }
-        return false;
+        setDir(3);
+        setMoving(true);
+        speed = 1;
     }
 
     @Override
@@ -35,25 +18,20 @@ public class Balloon extends DynamicEntity {
             int nxt_x = getX();
             int nxt_y = getY();
 
-            if (getDir() == 3) { // LEFT
-                // check collide
+            if (getDir() == 1) { // UP
+                nxt_y -= getSpeed();
+            } else if (getDir() == 2) { // DOWN
+                nxt_y += getSpeed();
+            }else if (getDir() == 3) { // LEFT
                 nxt_x -= getSpeed();
-                // change Img
             } else if (getDir() == 4) { // RIGHT
-                // check collide
                 nxt_x += getSpeed();
-                // change Img
             }
             if (!check_colliding(nxt_x, nxt_y)) {
                 change_coordinates(nxt_x, nxt_y);
             }
             else {
-                if(getDir() == 3) {
-                    setDir(4);
-                }
-                else {
-                    setDir(3);
-                }
+                autoChangeDir(getX(), getY());
             }
             animation++;
             if (animation == CommonFunc.Period) animation = 0;
@@ -64,7 +42,7 @@ public class Balloon extends DynamicEntity {
     @Override
     public void change_img() {
         /** left. */
-        if (getDir() == 3) {
+        if (getDir() == 1 || getDir() == 3) {
             setImg(
                     Sprite.movingSprite(
                                     Sprite.balloom_left1,
@@ -76,7 +54,7 @@ public class Balloon extends DynamicEntity {
         }
 
         /** right. */
-        if (getDir() == 4) {
+        if (getDir() == 2 || getDir() == 4) {
             setImg(
                     Sprite.movingSprite(
                                     Sprite.balloom_right1,
