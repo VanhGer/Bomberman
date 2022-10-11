@@ -59,7 +59,7 @@ public class Item extends Entity {
         case Portal:
           {
             Map.levelUp();
-            break;
+            return;
           }
 
         default:

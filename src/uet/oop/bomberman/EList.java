@@ -2,11 +2,13 @@ package uet.oop.bomberman;
 
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import uet.oop.bomberman.enemies.Enemies;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.other.Bomb;
 import uet.oop.bomberman.other.Explosion;
 
 import java.util.ArrayList;
+import java.util.ConcurrentModificationException;
 import java.util.List;
 
 public class EList {
@@ -14,7 +16,7 @@ public class EList {
   public static List<Grass> grasses = new ArrayList<>();
   public static List<Wall> walls = new ArrayList<>();
   public static List<Brick> bricks = new ArrayList<>();
-  public static List<Entity> enemies = new ArrayList<>();
+  public static List<Enemies> enemies = new ArrayList<>();
   public static List<Item> items = new ArrayList<>();
   public static List<Bomb> bombs = new ArrayList<>();
   public static List<Explosion> explosions = new ArrayList<>();
@@ -33,21 +35,24 @@ public class EList {
 
   public static void update() {
     /** update. */
-    bricks.forEach(Entity::update);
-    items.forEach(Entity::update);
-    enemies.forEach(Entity::update);
-    bombs.forEach(Entity::update);
-    explosions.forEach(Entity::update);
-    if (bomberman != null) {
+
+    try{
+      bombs.forEach(Entity::update);
+      bricks.forEach(Entity::update);
+      enemies.forEach(Entity::update);
+      explosions.forEach(Entity::update);
       bomberman.update();
+      items.forEach(Entity::update);
+
+
+      /** remove. */
+      bombs.removeIf(Bomb::isDone);
+      explosions.removeIf(Explosion::isDone);
+      bricks.removeIf(Brick::isDone);
+      items.removeIf(Item::isUsed);
+      enemies.removeIf(Enemies::isDone);
+    } catch (ConcurrentModificationException con) {
     }
-
-
-    /** remove. */
-    bombs.removeIf(b -> b.isDone());
-    explosions.removeIf(e -> e.isDone());
-    bricks.removeIf(b -> b.isDone());
-    items.removeIf(i -> i.isUsed());
   }
 
   public static boolean lose() {

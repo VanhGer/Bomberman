@@ -1,6 +1,7 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.enemies.Balloon;
+import uet.oop.bomberman.enemies.Enemies;
 import uet.oop.bomberman.enemies.Oneal;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
@@ -15,7 +16,6 @@ public class Map {
 
   public static void levelUp() {
     level++;
-    EList.clear();
     Read();
   }
 
@@ -24,6 +24,7 @@ public class Map {
       // win -> in ra mh chien thang.
       BombermanGame.wonScence();
     }
+    EList.clear();
     String tmp = "level" + level + ".txt";
     Scanner scanner = null;
     try {
@@ -86,7 +87,7 @@ public class Map {
           case '1':
             {
               ent = new Balloon(i, j, Sprite.balloom_right1.getFxImage());
-              EList.enemies.add(ent);
+              EList.enemies.add((Enemies) ent);
               ent = new Grass(i, j, Sprite.grass.getFxImage());
               EList.grasses.add((Grass) ent);
               break;
@@ -95,7 +96,7 @@ public class Map {
           case '2':
             {
               ent = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
-              EList.enemies.add(ent);
+              EList.enemies.add((Enemies) ent);
               ent = new Grass(i, j, Sprite.grass.getFxImage());
               EList.grasses.add((Grass) ent);
               break;
