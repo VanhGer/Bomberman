@@ -38,7 +38,7 @@ public class Item extends Entity {
     if (getxUnit() == EList.bomberman.getxUnit()
         && getyUnit() == EList.bomberman.getyUnit()) {
       setUsed(true);
-      PlaySound.play("D:/Yatogami/Code/Java/Bomberman-main(V2)/res/Sound/ting.wav", 0);
+      PlaySound.play("res/Sound/ting.wav", 0);
       switch (t) {
         case Bomb:
           {

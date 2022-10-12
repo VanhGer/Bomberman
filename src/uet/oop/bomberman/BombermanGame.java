@@ -30,6 +30,8 @@ public class BombermanGame extends Application {
   public static Stage mainStage;
   public static Group root;
   public static Scene scene;
+
+  public static PlaySound theme = new PlaySound();
   @Override
   public void start(Stage stage) {
     // Tao Canvas
@@ -48,7 +50,8 @@ public class BombermanGame extends Application {
     stage.setScene(scene);
     stage.show();
 
-    PlaySound.play("D:/Yatogami/Code/Java/Bomberman-main(V2)/res/Sound/theme.wav", -1);
+    // Theme cua game
+    theme.playTheme("res/Sound/theme.wav");
 
     // Di chuyen Bomber
     scene.setOnKeyPressed(
@@ -135,6 +138,8 @@ public class BombermanGame extends Application {
   }
 
   public static void lostScence() {
+    theme.stopTheme();
+    PlaySound.play("res/Sound/gameover.wav", 0);
     displayImage("res/scene/gameover.png");
   }
 

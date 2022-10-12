@@ -49,7 +49,7 @@ public class Bomb extends DynamicEntity {
         animation++;
       } else {
         /** bomb starts to explode. */
-        PlaySound.play("D:/Yatogami/Code/Java/Bomberman-main(V2)/res/Sound/boom.wav", 0);
+        PlaySound.play("res/Sound/boom.wav", 0);
         setBombExploding();
       }
     } else {
