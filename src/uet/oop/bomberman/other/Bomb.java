@@ -3,6 +3,7 @@ package uet.oop.bomberman.other;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.EList;
+import uet.oop.bomberman.PlaySound;
 import uet.oop.bomberman.entities.DynamicEntity;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -48,6 +49,7 @@ public class Bomb extends DynamicEntity {
         animation++;
       } else {
         /** bomb starts to explode. */
+        PlaySound.play("D:/Yatogami/Code/Java/Bomberman-main(V2)/res/Sound/boom.wav", 0);
         setBombExploding();
       }
     } else {
@@ -66,10 +68,8 @@ public class Bomb extends DynamicEntity {
       animation++;
     }
   }
-
   @Override
   public void change_img() {}
-
   public void setBombExploding() {
     setExploding(true);
     /** set Bomb status = exploding. */

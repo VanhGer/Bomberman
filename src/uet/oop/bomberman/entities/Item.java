@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.EList;
 import uet.oop.bomberman.Map;
+import uet.oop.bomberman.PlaySound;
 import uet.oop.bomberman.other.Bomb;
 import uet.oop.bomberman.other.Explosion;
 
@@ -37,6 +38,7 @@ public class Item extends Entity {
     if (getxUnit() == EList.bomberman.getxUnit()
         && getyUnit() == EList.bomberman.getyUnit()) {
       setUsed(true);
+      PlaySound.play("D:/Yatogami/Code/Java/Bomberman-main(V2)/res/Sound/ting.wav", 0);
       switch (t) {
         case Bomb:
           {

@@ -3,6 +3,7 @@ package uet.oop.bomberman.entities;
 import javafx.scene.image.Image;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.EList;
+import uet.oop.bomberman.PlaySound;
 import uet.oop.bomberman.graphics.Sprite;
 
 public class Bomber extends DynamicEntity {
@@ -62,6 +63,7 @@ public class Bomber extends DynamicEntity {
         nxt_x += getSpeed();
       }
       if (!check_colliding(nxt_x, nxt_y)) {
+        //PlaySound.play("D:/Yatogami/Code/Java/Bomberman-main(V2)/res/Sound/walk.wav", 0);
         change_coordinates(nxt_x, nxt_y);
       }
       animation++;
