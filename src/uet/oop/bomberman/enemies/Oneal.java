@@ -14,37 +14,21 @@ public class Oneal extends Enemies  {
         setSpeed(1);
     }
 
-    @Override
-    public void update() {
-        if (isMoving()) {
-            int nxt_x = getX();
-            int nxt_y = getY();
-            if (getDir() == 1) { // UP
-                nxt_y -= getSpeed();
-            } else if (getDir() == 2) { // DOWN
-                nxt_y += getSpeed();
-            }else if (getDir() == 3) { // LEFT
-                nxt_x -= getSpeed();
-            } else if (getDir() == 4) { // RIGHT
-                nxt_x += getSpeed();
-            }
-            if (!check_colliding(nxt_x, nxt_y)) {
-                change_coordinates(nxt_x, nxt_y);
-            }
-            else {
-                // change speed when colliding.
-                Random d = new Random();
-                setSpeed(d.nextInt(2) + 1);
-                autoChangeDir(getX(), getY());
-            }
-            animation++;
-            if (animation == CommonFunc.Period) animation = 0;
-            change_img();
-        }
-    }
 
     @Override
     public void change_img() {
+        if (isDead()) {
+            setImg(
+                    Sprite.movingSprite(
+                                    Sprite.oneal_dead,
+                                    Sprite.oneal_dead,
+                                    Sprite.oneal_dead,
+                                    deadAnimation,
+                                    CommonFunc.Period)
+                            .getFxImage());
+            return;
+        }
+
         /** left. */
         if (getDir() == 1 || getDir() == 3) {
             setImg(
@@ -70,8 +54,4 @@ public class Oneal extends Enemies  {
         }
     }
 
-    @Override
-    public boolean isDone() {
-        return false;
-    }
 }
