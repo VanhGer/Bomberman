@@ -1,6 +1,7 @@
 package uet.oop.bomberman;
 
 import uet.oop.bomberman.enemies.Balloon;
+import uet.oop.bomberman.enemies.Doll;
 import uet.oop.bomberman.enemies.Enemies;
 import uet.oop.bomberman.enemies.Oneal;
 import uet.oop.bomberman.entities.*;
@@ -101,6 +102,14 @@ public class Map {
               EList.grasses.add((Grass) ent);
               break;
             }
+          case '3':
+          {
+            ent = new Doll(i, j, Sprite.doll_right1.getFxImage());
+            EList.enemies.add((Enemies) ent);
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            break;
+          }
 
           default:
             {

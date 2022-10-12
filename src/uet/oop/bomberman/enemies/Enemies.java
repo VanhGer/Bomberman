@@ -12,6 +12,7 @@ public abstract class Enemies extends DynamicEntity {
 
     public boolean Dead;
     public int deadAnimation;
+    public static final int DeadPeriod = 40;
 
     public Enemies(int x, int y, Image img) {
         super(x, y, img);
@@ -28,7 +29,7 @@ public abstract class Enemies extends DynamicEntity {
     }
 
     public boolean isDone() {
-        return isDead() && deadAnimation >= 40;
+        return isDead() && deadAnimation >= DeadPeriod;
     }
 
     public void check_Dead() {

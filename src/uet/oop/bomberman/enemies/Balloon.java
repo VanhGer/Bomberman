@@ -19,10 +19,11 @@ public class Balloon extends Enemies  {
             setImg(
                     Sprite.movingSprite(
                                     Sprite.balloom_dead,
-                                    Sprite.balloom_dead,
-                                    Sprite.balloom_dead,
+                                    Sprite.mob_dead1,
+                                    Sprite.mob_dead2,
+                                    Sprite.mob_dead3,
                                     deadAnimation,
-                                    CommonFunc.Period)
+                                    DeadPeriod)
                             .getFxImage());
             return;
         }
