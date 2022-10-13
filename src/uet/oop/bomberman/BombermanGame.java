@@ -124,16 +124,23 @@ public class BombermanGame extends Application {
         });
 
     timer =
-        new AnimationTimer() {
-          @Override
-          public void handle(long l) {
-            EList.render(gc, canvas);
-            EList.update();
-            if (EList.lose()) {
-              lostScence();
-            }
-          }
-        };
+            new AnimationTimer() {
+              int fps = 0;
+              @Override
+              public void handle(long l) {
+                if (fps == 0) {
+                  AutoFindPath.BFS(EList.bomberman.getxUnit(), EList.bomberman.getyUnit());
+                  fps = 30;
+                }  else {
+                  fps--;
+                }
+                EList.render(gc, canvas);
+                EList.update();
+                if (EList.lose()) {
+                  lostScence();
+                }
+              }
+            };
     timer.start();
   }
 
