@@ -1,12 +1,14 @@
 package uet.oop.bomberman.enemies;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.AutoFindPath;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.entities.DynamicEntity;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Random;
 
 public abstract class Enemies extends DynamicEntity {
 
@@ -40,12 +42,44 @@ public abstract class Enemies extends DynamicEntity {
         }
     }
 
+    public List<Integer> moveableDir(int nxt_x, int nxt_y) {
+        List<Integer> list = new ArrayList<>();
+        if (!check_colliding(nxt_x, nxt_y - getSpeed()))
+            list.add(1); // can move up.
+
+        if (!check_colliding(nxt_x, nxt_y + getSpeed()))
+            list.add(2); // can move down;
+
+        if (!check_colliding(nxt_x - getSpeed(), nxt_y))
+            list.add(3); // can move left;
+
+        if (!check_colliding(nxt_x + getSpeed(), nxt_y))
+            list.add(4); // can move right;
+        return list;
+    }
+
     @Override
     public void update() {
         if (isMoving() && !isDead()) {
             int nxt_x = getX();
             int nxt_y = getY();
 
+            if (this instanceof Minvo) {
+                int dir = AutoFindPath.getAutoDir1(getxUnit(), getyUnit());
+                List<Integer> list = moveableDir(nxt_x, nxt_y);
+                /** change dir. */
+                if (list.contains(dir)){
+                    setDir(dir);
+                }
+            }
+            if (this instanceof Kondoria) {
+                int dir = AutoFindPath.getAutoDir2(getxUnit(), getyUnit());
+                List<Integer> list = moveableDir(nxt_x, nxt_y);
+                /** change dir. */
+                if (list.contains(dir)){
+                    setDir(dir);
+                }
+            }
             if (getDir() == 1) { // UP
                 nxt_y -= getSpeed();
             } else if (getDir() == 2) { // DOWN
@@ -59,6 +93,11 @@ public abstract class Enemies extends DynamicEntity {
                 change_coordinates(nxt_x, nxt_y);
             }
             else {
+                if (this instanceof Oneal || this instanceof Minvo) {
+                    Random r = new Random();
+                    int newSpeed = r.nextInt(2) + 1;
+                    setSpeed(newSpeed);
+                }
                 autoChangeDir(getX(), getY());
             }
             animation++;

@@ -1,9 +1,6 @@
 package uet.oop.bomberman;
 
-import uet.oop.bomberman.enemies.Balloon;
-import uet.oop.bomberman.enemies.Doll;
-import uet.oop.bomberman.enemies.Enemies;
-import uet.oop.bomberman.enemies.Oneal;
+import uet.oop.bomberman.enemies.*;
 import uet.oop.bomberman.entities.*;
 import uet.oop.bomberman.graphics.Sprite;
 
@@ -45,63 +42,63 @@ public class Map {
         char c = tmp.charAt(i);
         switch (c) {
           case '#':
-            {
-              ent = new Wall(i, j, Sprite.wall.getFxImage());
-              EList.walls.add((Wall) ent);
-              break;
-            }
+          {
+            ent = new Wall(i, j, Sprite.wall.getFxImage());
+            EList.walls.add((Wall) ent);
+            break;
+          }
 
           case '*':
           case 'x':
           case 'b':
           case 'f':
           case 's':
-            {
-              ent = new Brick(i, j, Sprite.brick.getFxImage());
-              EList.bricks.add((Brick) ent);
-              ent = new Grass(i, j, Sprite.grass.getFxImage());
-              EList.grasses.add((Grass) ent);
-              // xu ly th ben trong co item???
-              if (c == 'x') {
-                ent = new Item(i, j, Sprite.portal.getFxImage(), Item.type.Portal);
-              } else if (c == 'b') {
-                ent = new Item(i, j, Sprite.powerup_bombs.getFxImage(), Item.type.Bomb);
-              } else if (c == 'f') {
-                ent = new Item(i, j, Sprite.powerup_flames.getFxImage(), Item.type.Flame);
-              } else if (c == 's') {
-                ent = new Item(i, j, Sprite.powerup_speed.getFxImage(), Item.type.Speed);
-              }
-              if (c != '*') {
-                EList.items.add((Item) ent);
-              }
-              break;
+          {
+            ent = new Brick(i, j, Sprite.brick.getFxImage());
+            EList.bricks.add((Brick) ent);
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            // xu ly th ben trong co item???
+            if (c == 'x') {
+              ent = new Item(i, j, Sprite.portal.getFxImage(), Item.type.Portal);
+            } else if (c == 'b') {
+              ent = new Item(i, j, Sprite.powerup_bombs.getFxImage(), Item.type.Bomb);
+            } else if (c == 'f') {
+              ent = new Item(i, j, Sprite.powerup_flames.getFxImage(), Item.type.Flame);
+            } else if (c == 's') {
+              ent = new Item(i, j, Sprite.powerup_speed.getFxImage(), Item.type.Speed);
             }
+            if (c != '*') {
+              EList.items.add((Item) ent);
+            }
+            break;
+          }
 
           case 'p':
-            {
-              EList.bomberman = new Bomber(i, j, Sprite.player_down.getFxImage());
-              ent = new Grass(i, j, Sprite.grass.getFxImage());
-              EList.grasses.add((Grass) ent);
-              break;
-            }
+          {
+            EList.bomberman = new Bomber(i, j, Sprite.player_down.getFxImage());
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            break;
+          }
 
           case '1':
-            {
-              ent = new Balloon(i, j, Sprite.balloom_right1.getFxImage());
-              EList.enemies.add((Enemies) ent);
-              ent = new Grass(i, j, Sprite.grass.getFxImage());
-              EList.grasses.add((Grass) ent);
-              break;
-            }
+          {
+            ent = new Balloon(i, j, Sprite.balloom_right1.getFxImage());
+            EList.enemies.add((Enemies) ent);
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            break;
+          }
 
           case '2':
-            {
-              ent = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
-              EList.enemies.add((Enemies) ent);
-              ent = new Grass(i, j, Sprite.grass.getFxImage());
-              EList.grasses.add((Grass) ent);
-              break;
-            }
+          {
+            ent = new Oneal(i, j, Sprite.oneal_right1.getFxImage());
+            EList.enemies.add((Enemies) ent);
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            break;
+          }
           case '3':
           {
             ent = new Doll(i, j, Sprite.doll_right1.getFxImage());
@@ -111,11 +108,29 @@ public class Map {
             break;
           }
 
+          case '4':
+          {
+            ent = new Minvo(i, j, Sprite.doll_right1.getFxImage());
+            EList.enemies.add((Enemies) ent);
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            break;
+          }
+
+          case '5':
+          {
+            ent = new Kondoria(i, j, Sprite.doll_right1.getFxImage());
+            EList.enemies.add((Enemies) ent);
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+            break;
+          }
+
           default:
-            {
-              ent = new Grass(i, j, Sprite.grass.getFxImage());
-              EList.grasses.add((Grass) ent);
-            }
+          {
+            ent = new Grass(i, j, Sprite.grass.getFxImage());
+            EList.grasses.add((Grass) ent);
+          }
         }
       }
     }
