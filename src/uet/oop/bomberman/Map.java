@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class Map {
   public static int level = 1;
-  public static final int maxLevel = 2;
+  public static final int maxLevel = 3;
 
   public static void levelUp() {
     level++;
