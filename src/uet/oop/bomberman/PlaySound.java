@@ -10,6 +10,7 @@ public class PlaySound {
     AudioInputStream audioInputStream;
     Clip clip;
     public static void play(String soundFile, int times) {
+        if (BombermanGame.sound == 0) return;
         try {
             AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundFile).getAbsoluteFile());
             Clip clip = AudioSystem.getClip();

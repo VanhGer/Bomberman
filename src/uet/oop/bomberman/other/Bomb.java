@@ -1,6 +1,7 @@
 package uet.oop.bomberman.other;
 
 import javafx.scene.image.Image;
+import uet.oop.bomberman.BombermanGame;
 import uet.oop.bomberman.CommonFunc;
 import uet.oop.bomberman.EList;
 import uet.oop.bomberman.PlaySound;

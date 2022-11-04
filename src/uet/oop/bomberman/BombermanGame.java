@@ -24,6 +24,7 @@ public class BombermanGame extends Application {
   public static final int WIDTH = 31;
   public static final int HEIGHT = 13;
 
+  public static int sound = 1;
   public static GraphicsContext gc;
   public static Canvas canvas;
   public static AnimationTimer timer;
@@ -59,6 +60,17 @@ public class BombermanGame extends Application {
           @Override
           public void handle(KeyEvent keyEvent) {
             switch (keyEvent.getCode()) {
+              case M:
+              {
+                if(sound == 1) {
+                  theme.stopTheme();
+                  sound = 0;
+                } else {
+                  theme.playTheme("res/Sound/theme.wav");
+                  sound = 1;
+                }
+                break;
+              }
               case SPACE:
                 {
                   // set bomb
@@ -119,6 +131,7 @@ public class BombermanGame extends Application {
               case LEFT:
               case RIGHT:
                 EList.bomberman.setMoving(false);
+              case M:
             }
           }
         });
